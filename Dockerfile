@@ -20,6 +20,7 @@ WORKDIR /app/
 RUN apk add --no-cache perl=5.26.3-r0
 copy --from=build /app /app
 
+WORKDIR /code/
 # Build arguments
 ARG BUILD_DATE
 ARG BUILD_REF
