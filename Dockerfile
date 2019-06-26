@@ -1,8 +1,8 @@
-FROM alpine:3.9.4 as build
+FROM alpine:3.10.0 as build
 
 WORKDIR /app/
 
-RUN apk add --no-cache perl=5.26.3-r0 perl-utils=5.26.3-r0 make=4.2.1-r2 build-base=0.5-r1 perl-dev=5.26.3-r0
+RUN apk add --no-cache perl=5.28.2-r1 perl-utils=5.28.2-r1 make=4.2.1-r2 build-base=0.5-r1 perl-dev=5.28.2-r1
 RUN cpan Carton \
     && mkdir -p /app/
 
@@ -11,13 +11,13 @@ COPY app /app/
 RUN carton install
 
 # App container
-FROM alpine:3.9.4
+FROM alpine:3.10.0
 
 ENV PERL5LIB=/app/local/lib/perl5/
 ENV PATH="${PATH}:/app/local/bin/"
 WORKDIR /app/
 
-RUN apk add --no-cache perl=5.26.3-r0
+RUN apk add --no-cache perl=5.28.2-r1
 copy --from=build /app /app
 
 WORKDIR /code/
