@@ -1,4 +1,4 @@
-FROM alpine:3.10.0 as build
+FROM alpine:3.10.1 as build
 
 WORKDIR /app/
 
@@ -11,7 +11,7 @@ COPY app /app/
 RUN carton install
 
 # App container
-FROM alpine:3.10.0
+FROM alpine:3.10.1
 
 ENV PERL5LIB=/app/local/lib/perl5/
 ENV PATH="${PATH}:/app/local/bin/"
