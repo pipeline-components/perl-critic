@@ -11,7 +11,13 @@ COPY app /app/
 RUN carton install
 
 # App container
+FROM pipelinecomponents/base-entrypoint:0.1.0 as entrypoint
+
 FROM alpine:3.10.2
+COPY --from=entrypoint /entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+ENV DEFAULTCMD perlcritic
+
 
 ENV PERL5LIB=/app/local/lib/perl5/
 ENV PATH="${PATH}:/app/local/bin/"
