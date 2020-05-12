@@ -1,4 +1,4 @@
-FROM alpine:3.11.5 as build
+FROM alpine:3.11.6 as build
 
 WORKDIR /app/
 
@@ -19,7 +19,7 @@ RUN carton install
 # App container
 FROM pipelinecomponents/base-entrypoint:0.2.0 as entrypoint
 
-FROM alpine:3.11.5
+FROM alpine:3.11.6
 COPY --from=entrypoint /entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 ENV DEFAULTCMD perlcritic
