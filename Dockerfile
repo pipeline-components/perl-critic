@@ -3,10 +3,10 @@ FROM alpine:3.12.1 as build
 WORKDIR /app/
 
 RUN apk add --no-cache \
-    perl=5.30.2-r0 \
-    perl-utils=5.30.2-r0 \
+    perl=5.30.3-r0 \
+    perl-utils=5.30.3-r0 \
     build-base=0.5-r2 \
-    perl-dev=5.30.2-r0
+    perl-dev=5.30.3-r0
     
 RUN cpan Carton \
     && mkdir -p /app/
@@ -28,7 +28,7 @@ ENV PERL5LIB=/app/local/lib/perl5/
 ENV PATH="${PATH}:/app/local/bin/"
 WORKDIR /app/
 
-RUN apk add --no-cache perl=5.30.2-r0
+RUN apk add --no-cache perl=5.30.3-r0
 copy --from=build /app /app
 
 WORKDIR /code/
