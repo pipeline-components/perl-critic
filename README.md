@@ -22,7 +22,7 @@ The image is based on alpine:3.8.
 ```yaml
 perl-critic:
   stage: linting
-  image: pipelinecomponents/perl-critic:latest
+  image: registry.gitlab.com/pipeline-components/perl-critic:latest
   script:
     - perlcritic .
 ```
