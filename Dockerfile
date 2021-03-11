@@ -1,12 +1,12 @@
-FROM alpine:3.12.4 as build
+FROM alpine:3.13.2 as build
 
 WORKDIR /app/
 
 RUN apk add --no-cache \
-    perl=5.30.3-r0 \
-    perl-utils=5.30.3-r0 \
+    perl=5.32.0-r0 \
+    perl-utils=5.32.0-r0 \
     build-base=0.5-r2 \
-    perl-dev=5.30.3-r0
+    perl-dev=5.32.0-r0
     
 RUN cpan Carton \
     && mkdir -p /app/
@@ -18,7 +18,7 @@ RUN carton install
 # App container
 FROM pipelinecomponents/base-entrypoint:0.4.0 as entrypoint
 
-FROM alpine:3.12.4
+FROM alpine:3.13.2
 COPY --from=entrypoint /entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 ENV DEFAULTCMD perlcritic
@@ -28,7 +28,7 @@ ENV PERL5LIB=/app/local/lib/perl5/
 ENV PATH="${PATH}:/app/local/bin/"
 WORKDIR /app/
 
-RUN apk add --no-cache perl=5.30.3-r0
+RUN apk add --no-cache perl=5.32.0-r0
 copy --from=build /app /app
 
 WORKDIR /code/
