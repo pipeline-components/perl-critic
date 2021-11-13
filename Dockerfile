@@ -16,7 +16,7 @@ COPY app /app/
 RUN carton install
 
 # App container
-FROM pipelinecomponents/base-entrypoint:0.4.0 as entrypoint
+FROM pipelinecomponents/base-entrypoint:0.5.0 as entrypoint
 
 FROM alpine:3.13.5
 COPY --from=entrypoint /entrypoint.sh /entrypoint.sh
