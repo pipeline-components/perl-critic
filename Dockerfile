@@ -2,14 +2,14 @@ FROM alpine:3.15.1 as build
 
 WORKDIR /app/
 
+# hadolint ignore=DL3018
 RUN apk add --no-cache \
-    perl=5.32.0-r0 \
-    perl-utils=5.32.0-r0 \
-    build-base=0.5-r2 \
-    perl-dev=5.32.0-r0
-    
-RUN cpan Carton \
-    && mkdir -p /app/
+    perl \
+    perl-utils \
+    build-base \
+    perl-dev && \
+    cpan Carton && \
+    mkdir -p /app/
 
 COPY app /app/
 
@@ -28,7 +28,8 @@ ENV PERL5LIB=/app/local/lib/perl5/
 ENV PATH="${PATH}:/app/local/bin/"
 WORKDIR /app/
 
-RUN apk add --no-cache perl=5.32.0-r0
+# hadolint ignore=DL3018
+RUN apk add --no-cache perl
 copy --from=build /app /app
 
 WORKDIR /code/
