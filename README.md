@@ -15,7 +15,7 @@
 ## Usage
 
 The image is for running perl-critic, perl-critic is installed in /app/ in case you need to customize the install before usage.
-The image is based on alpine:3.8.
+The image is based on alpine:3.16.
 
 ## Examples
 
