@@ -1,1 +1,1 @@
-requires 'Perl::Critic', '1.152';
+requires 'Perl::Critic', '1.154';
